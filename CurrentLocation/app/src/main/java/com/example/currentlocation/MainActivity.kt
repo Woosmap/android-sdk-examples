@@ -53,7 +53,6 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
         mapView = findViewById<WoosmapView>(R.id.mapView)
-        //mapView.zoomLevel = 8.0
         getLocationUpdates()
         startLocationUpdates()
     }
