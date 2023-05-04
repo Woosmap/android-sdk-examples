@@ -39,8 +39,8 @@ class MainActivity : AppCompatActivity(), OnStoreSelectedListener {
                 height: 32
               },
               anchor: {
-                x: 21,
-                y: 21
+                x: 16,
+                y: 16
               }
             }
           },
