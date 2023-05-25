@@ -17,7 +17,7 @@
             android:value="https://develop-api.woosmap.com" />
         <meta-data
             android:name="com.woosmap.woosmapsdk.privateKey"
-            android:value="af45c219-03a5-4486-b6e3-20d43137eef0" />
+            android:value="YOUR PRIVATE KEY" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
