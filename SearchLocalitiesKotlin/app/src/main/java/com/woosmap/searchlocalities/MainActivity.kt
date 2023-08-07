@@ -25,26 +25,17 @@ class MainActivity : AppCompatActivity() {
         mapView.zoomLevel = 3.0
         mapView.center = LatLng(47.7724413, 12.4833043)
 
-        val dataRenderer = DataRenderer(mapView, onTop = true)
-
         autoComplete = findViewById(R.id.autoComplete)
         autoComplete.onLocalitiesSelected = { locality ->
-            locality.geometry.viewport?.let {
-                mapView.easeCamera(CameraUpdate(bounds = it))
-                val rectangle = Polygon(
-                    listOf(
-                        Point(it.longitudeEast, it.latitudeNorth),
-                        Point(it.longitudeEast, it.latitudeSouth),
-                        Point(it.longitudeWest, it.latitudeSouth),
-                        Point(it.longitudeWest, it.latitudeNorth),
-                        Point(it.longitudeEast, it.latitudeNorth),
-                    )
-                )
-                dataRenderer.addFeature(Feature(geometry = rectangle)) {
-                    strokeColor = "#f00"
-                    fillOpacity = 0.0
+            val cameraUpdate = when {
+                locality.geometry.viewport != null -> {
+                    CameraUpdate(bounds = locality.geometry.viewport)
+                }
+                else -> {
+                    CameraUpdate(target=locality.geometry.location)
                 }
             }
+            mapView.easeCamera(cameraUpdate)
             mapView.requestFocus()
         }
     }
